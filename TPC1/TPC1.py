@@ -137,9 +137,10 @@ for pair in anagramas.items():
     if len(pair[1]) > 1:
         new_anagramas[pair[0]] = pair[1]
 
-print(new_anagramas)
+print(new_anagramas) 
 
 
+#
 
     
 
