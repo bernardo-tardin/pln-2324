@@ -39,36 +39,38 @@ header img {
     align-items: center;
 }
 
-.content {
+#content {
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
     font-family: "Formula1";
 }
 
-.content h2 {
+#content h2 {
     font-family: 'Formula1-Bold';
     font-size: 40px;
 }
 
-.column-left {
+#column-left {
     width: 65%;
     padding-left: 1%;
     
 }
 
-.column-right {
+#column-right {
     width: 50%;
     padding-left: 1%;
 }
+
 
 .driver > div{
     display: flex;
     justify-content: space-between;
     border: 5px solid black;
     border-radius: 10px;
-    max-width: 100%;
+    min-width: 100%;
     margin-top: 14px;
+    align-items: center;
 
 }
 
@@ -92,7 +94,7 @@ header img {
     font-size: 160%;
 }
 
-.redbull, .ferrari, .mercedes, .mclaren, .visacash, .haas, .romeo, .alpine {
+#redbull, #ferrari, #mercedes, #mclaren, #visacash, #haas, #romeo, #alpine {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -114,7 +116,7 @@ a {
     color: white;
 }
 
-.teams {
+#teams {
     justify-content: space-between;
     border: 5px solid black;
     border-radius: 10px;
@@ -151,7 +153,7 @@ a {
     font-size: 100%;
 }
 
-.calendar1, .calendar2, .calendar3, .calendar4 {
+#calendar1, #calendar2, #calendar3, #calendar4 {
     display: flex;
     gap: 10px;
     justify-content: space-between;
