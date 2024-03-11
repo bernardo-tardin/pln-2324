@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Formula1';
+    src: url('Formula1-Regular-1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Formula1-Bold';
+    src: url('Formula1-Bold-4.ttf') format('truetype');
+}
+
+header {
+    background-color: rgb(206, 46, 30);
+    display: flex;
+    align-items: center;
+    min-height: 150px; 
+    font-size: 20px;
+    color: white; 
+    justify-content: space-between;
+    font-family: 'Formula1';
+}
+
+header img {
+    align-content: center;
+    display: flex;
+}
+
+
+.header-left, .header-right{
+    display: flex;
+    gap: 150px;
+}
+
+.header-left {
+    padding-left: 70px;
+}
+
+.header-right {
+    padding-right: 60px;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    font-family: "Formula1";
+}
+
+.content h2 {
+    font-family: 'Formula1-Bold';
+    font-size: 40px;
+}
+
+.column-left {
+    width: 65%;
+    padding-left: 1%;
+    
+}
+
+.column-right {
+    width: 50%;
+    padding-left: 1%;
+}
+
+.driver > div{
+    display: flex;
+    justify-content: space-between;
+    border: 5px solid black;
+    border-radius: 10px;
+    max-width: 100%;
+    margin-top: 14px;
+
+}
+
+.driver img {
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+}
+
+
+.driver h1 {
+    color: rgb(206, 46, 30);
+    font-family: "Formula1-Bold";
+    font-size: 50px;
+    padding-left: 10px;
+}
+
+.driver h3 {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 160%;
+}
+
+.redbull, .ferrari, .mercedes, .mclaren, .visacash, .haas, .romeo, .alpine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: fit-content;
+}
+
+.website {
+    background-color: white;
+    color:rgb(206, 46, 30);
+    padding: 10px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header-link  {
+    color: white;
+}
+
+.teams {
+    justify-content: space-between;
+    border: 5px solid black;
+    border-radius: 10px;
+    max-width: 90%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.name-logo {
+    display:flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.round {
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    max-width: fi;
+    padding: 5px;
+}
+
+.round > h4 {
+    color: white;
+    background-color: rgb(206, 46, 30);
+    font-family: 'Formula1-Bold';
+    padding: 5px;
+    text-align: center;
+}
+
+.round > h3 {
+    font-size: 100%;
+}
+
+.calendar1, .calendar2, .calendar3, .calendar4 {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin: 2%;
+}
+
+.calendar {
+    border: 5px solid black;
+    border-radius: 10px;
+    margin-right: 40px;
+}
