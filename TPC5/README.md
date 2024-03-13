@@ -1,0 +1,9 @@
+## Trabalho de Casa 5
+
+Este trabalho consiste no aperfeiçoamento do código criado na aula que realiza o etiquetamento de termos e gera um ficheiro HTML. Para tal, foi fornecido um ficheiro denominado *termos_traduzidos.txt* que apresenta uma lista de termos em português com as respetivas traduções em inglês separadas por um @. Portanto, o objetivo é alterar o campo title da tag <a> já desenvolvida com a introdução da tradução antes da descrição.
+
+Foi criado um ficheiro termos_ingles.py que realiza a extração dos termos e suas respetivas traduções através da expressão regular r'(.+)@(.+)' pela função _findall_, retornando uma lista de tuplos (portugues_ingles) em que o primeiro elemento de cada tuplo é o termo em português e o segundo, em inglês. A lista criada é, então, convertida num dicionário. O código desenvolvido neste ficheiro permite, no fim, criar um ficheiro json com o dicionário criado em que as chaves são os termos em português e os valores, os termos em inglês.
+
+Em relação ao ficheiro etiquetador.py, foi adicionada a abertura do ficheiro *conceitos_ingles.json* a fim de extrair o dicionário. Na função _etiquetador_ anteriormente desenvolvida, foram adicionadas novas condições if/else que verificam se os termos analisados estão presentes ou não nos dicionários *termos_ingles* e *conceitos_mini*. Caso o termo a ser analisado esteja presente em ambos, é adicionada à tag <a> a tradução em inglês antes da descrição. 
+
+Foi solicitado que, ao adicionar a tradução, tivesse uma quebra de linha entre a tradução e a descrição, porém por uma limitação do HTML, o elemento _title_ de uma tag <a> interpreta todo o conteúdo presente como texto, não permitindo quebras de linha. Portanto, para uma melhor visualização, a tradução foi apresentada entre parênteses.
