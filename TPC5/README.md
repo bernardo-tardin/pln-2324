@@ -6,4 +6,4 @@ Foi criado um ficheiro termos_ingles.py que realiza a extração dos termos e su
 
 Em relação ao ficheiro etiquetador.py, foi adicionada a abertura do ficheiro *conceitos_ingles.json* a fim de extrair o dicionário. Na função _etiquetador_ anteriormente desenvolvida, foram adicionadas novas condições if/else que verificam se os termos analisados estão presentes ou não nos dicionários *termos_ingles* e *conceitos_mini*. Caso o termo a ser analisado esteja presente em ambos, é adicionada à tag <a> a tradução em inglês antes da descrição. 
 
-Foi solicitado que, ao adicionar a tradução, tivesse uma quebra de linha entre a tradução e a descrição, porém por uma limitação do HTML, o elemento _title_ de uma tag <a> interpreta todo o conteúdo presente como texto, não permitindo quebras de linha. Portanto, para uma melhor visualização, a tradução foi apresentada entre parênteses.
+Foi solicitado que, ao adicionar a tradução, tivesse uma quebra de linha entre a tradução e a descrição, portanto, foi necessário deslocar a linha de código *texto = re.sub(r'\n','<br>',texto)* para antes da função etiquetador para que não ocorresse a substituição do "\n".

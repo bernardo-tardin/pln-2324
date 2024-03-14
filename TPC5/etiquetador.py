@@ -10,16 +10,19 @@ conceitos = json.load(file_conceitos)
 termos_ingles = json.load(file_ingles)
 
 conceitos_min = {chave.lower():conceitos[chave] for chave in conceitos}
+termos_ingles_min = {chave.lower():termos_ingles[chave] for chave in termos_ingles}
 
 black_list = ['a','o','e','de','da','do','em','um','uma','para','com','por','na','no','nas','nos','ao','à','às','aos','que','se','não','mas','ou','como','quando','onde','porque','para','quem','qual','quais','qualquer','quanto','quanto','quanta','quantos','quantas','este','pelo']
+
+texto = re.sub(r'\n','<br>',texto)
 
 def etiquetador(matched):
     palavra = matched[0]
     if palavra.lower() not in black_list:
-        if palavra.lower() in termos_ingles and palavra.lower() in conceitos_min:
-            ingles = termos_ingles[palavra.lower()]
+        if palavra.lower() in termos_ingles_min and palavra.lower() in conceitos_min:
+            ingles = termos_ingles_min[palavra.lower()]
             descricao = conceitos_min[palavra.lower()]
-            etiqueta = f"<a href='' title='(en: {ingles}) {descricao}'>{palavra}</a>"
+            etiqueta = f"<a href='' title='(en: {ingles.lower()})\n{descricao}'>{palavra}</a>"
             return etiqueta
         elif palavra.lower() in conceitos_min:
             descricao = conceitos_min[palavra.lower()]
@@ -32,7 +35,7 @@ def etiquetador(matched):
 
 expressao = r'[\wáãéíóçêúôâõà]+'
 texto = re.sub(expressao,etiquetador,texto, flags=re.IGNORECASE)
-texto = re.sub(r'\n','<br>',texto)
+
 texto = re.sub(r'\f','<hr/>',texto)
 
 file_out = open('livro_etiquetado.html','w')
