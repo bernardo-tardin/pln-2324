@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h3> Adicionar tradução para <i>{{designacao}}</i></h3>
+<hr>
+<form method="post">
+    <div class="mb-3">
+      <label for="idioma" class="form-label">Idioma</label>
+      <input type="text" class="form-control shadow-sm" name="idioma">
+    </div>
+    <div class="mb-3">
+      <label for="traducao" class="form-label">Tradução</label>
+      <input type="text" class="form-control shadow-sm" name="traducao">
+    </div>
+    <a href="/conceitos/{{designacao}}" class="btn btn-dark">Voltar</a>
+    <button type="submit" class="btn btn-dark">Adicionar</button>
+  </form>
+{% endblock %}

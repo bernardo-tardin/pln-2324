@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="d-flex justify-content-between">
+  <a href="/adicionar_conceito" class="btn btn-dark mb-3 d-inline-block">Adicionar Conceito</a>
+  <form class="d-flex" role="search" action="{{ url_for('pesquisarConceito') }}" method="POST">
+    <input class="form-control me-2 shadow-sm" type="text" placeholder="Pesquisar Conceito" aria-label="Search" name="search">
+    <button class="btn btn-outline-dark" type="submit">Pesquisar</button>
+  </form>
+</div>  
+  <div class="list-group mb-5">
+    {% if resultados %}
+      {% for conceito in resultados %}
+        <a href='/conceitos/{{conceito}}' class="list-group-item list-group-item-action">{{conceito}}</a>
+      {% endfor %}
+    {% else %}
+      {% for conceito in conceitos %}
+        <a href='/conceitos/{{conceito}}' class="list-group-item list-group-item-action">{{conceito}}</a>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endblock %}
