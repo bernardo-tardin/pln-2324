@@ -13,4 +13,6 @@ Em relação à página de erro, foi utilizado um layout pré-feito que é indic
 
 Para a tabela de dados, foi necessário recorrer à utilização da linguagem JavaScript através da utilização da biblioteca jQuery. Criou-se, então, uma diretoria denominada "static" que possui o ficheiro *script1.js* em que chama a função *DataTable()* disponível na biblioteca. Para a implementação da página, foi criado o template *table.html* que através de um ciclo *for* adiciona novas linhas à tabela de acordo com os dados presentes no dicionário *conceitos*. Como a estrutura do ficheiro JSON permite que haja conceitos sem as respetivas traduções, estabeleceu-se uma condição *if* para que, no caso destes conceitos, seja impresso o texto "Sem Tradução".
 
+Abaixo está um vídeo que demonstra a utilização da página web desenvolvida:
 
+![](video.mov)
