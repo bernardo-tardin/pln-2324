@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<form class="d-flex" role="search" action="{{ url_for('pesquisa') }}" method="POST">
+    <input class="form-control me-2 shadow-sm" type="text" placeholder="Pesquisar Conceito" aria-label="Search" name="search">
+    <button class="btn btn-outline-dark" type="submit">Pesquisar</button>
+</form>
+
+
+    <div class="list-group">
+        <table class="table table-hover sticky-header">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col"><h2 class="text-start display-5">Conceito</h2></th>
+                    <th scope="col"><h2 class="text-start display-5">Descrição</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for conceito in resultados %}
+                <tr>
+                    <td><a href="/conceitos/{{conceito}}" class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">{{conceito}}</a></td>
+                    <td>{{resultados[conceito]["descricao"]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        
+    </div>
+
+
+
+
+{% endblock %}

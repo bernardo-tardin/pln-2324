@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="d-flex justify-content-between">
+  <h2 class="d-inline-block">{{designacao}}</h2>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagarConceito">
+    Apagar Conceito
+  </button>
+</div>
+
+<div class="modal fade" id="apagarConceito" tabindex="-1" aria-labelledby="apagarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="apagarLabel">Apagar <i>{{designacao}}</i></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> Deseja apagar o conceito <i>{{designacao}}</i>? </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Voltar</button>
+        <form method="POST" action="{{ url_for('apagarConceito', designacao=designacao) }}">
+          <button type="submit" class="btn btn-danger">Apagar Conceito</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<hr>
+<div class="container-start">
+    <div class="row align-items-start justify-content-start">
+      <div class="col-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-book-fill" viewBox="0 0 16 16" style="background-color: #343a40; border-radius: 5px; padding: 10px; margin-bottom:10px">
+                <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+            </svg>
+            <h4> Descrição </h4>
+            <p> {{descricao}} </p>
+            <a href="/editar_descricao/{{designacao}}" style="color:black;">Editar Descrição</a>
+        </div>
+      <div class="col-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-type" viewBox="0 0 16 16" style="background-color: #343a40; border-radius: 5px; padding: 10px; margin-bottom:10px">
+          <path d="m2.244 13.081.943-2.803H6.66l.944 2.803H8.86L5.54 3.75H4.322L1 13.081zm2.7-7.923L6.34 9.314H3.51l1.4-4.156zm9.146 7.027h.035v.896h1.128V8.125c0-1.51-1.114-2.345-2.646-2.345-1.736 0-2.59.916-2.666 2.174h1.108c.068-.718.595-1.19 1.517-1.19.971 0 1.518.52 1.518 1.464v.731H12.19c-1.647.007-2.522.8-2.522 2.058 0 1.319.957 2.18 2.345 2.18 1.06 0 1.716-.43 2.078-1.011zm-1.763.035c-.752 0-1.456-.397-1.456-1.244 0-.65.424-1.115 1.408-1.115h1.805v.834c0 .896-.752 1.525-1.757 1.525"/>
+        </svg>
+        <h4> Tradução </h4>
+         {% for idioma, traduc in traducao.items() %}
+            <p><strong> {{idioma}}: </strong>{{traduc}} </p>
+          {% endfor %}
+        <a href="/adicionar_traducao/{{designacao}}" style="color:black;">Adicionar Tradução</a>
+      </div>
+      </div>
+      <a href="/conceitos" class="btn btn-dark mt-4">Voltar</a>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

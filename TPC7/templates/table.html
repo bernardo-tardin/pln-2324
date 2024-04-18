@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>Designação</th>
+            <th>Descrição</th>
+            <th>Tradução</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for conceito in conceitos %}
+        <tr>
+            <td><a href="/conceitos/{{conceito}}" class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">{{conceito}}</a></td>
+            <td>{{conceitos[conceito]["descricao"]}}</td>
+            {% if conceitos[conceito]["traducao"] == {} %}
+                <td>Sem tradução</td>
+            {% else %}
+                <td>
+                    {% for trad, valor in conceitos[conceito]["traducao"].items() %}
+                        {{trad}}: {{valor}}
+                    {% endfor %}
+                </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
