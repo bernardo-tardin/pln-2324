@@ -15,4 +15,4 @@ Para a tabela de dados, foi necessário recorrer à utilização da linguagem Ja
 
 Abaixo está um vídeo que demonstra a utilização da página web desenvolvida:
 
-![](video.mov)
+[![](video.mov)]
