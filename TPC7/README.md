@@ -15,4 +15,5 @@ Para a tabela de dados, foi necessário recorrer à utilização da linguagem Ja
 
 Abaixo está um vídeo que demonstra a utilização da página web desenvolvida:
 
-[![](video.mov)]
+https://github.com/bernardo-tardin/pln-2324/assets/147925451/6e22330f-8f54-4a60-8815-b46c39d6f5a9
+
