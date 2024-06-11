@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div style="display: flex; flex-direction: column; align-items: justify;">
+    <div class="p-1 g-col-2" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='images/abc.png') }}"  width="6%" height="6%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <h3 style="margin: 0; text-align: justify; ">
+                Filtrar por Alfabeto </h3>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: row; align-items: justify;">
+        <div class=" gap-2 d-flex mb-2" style="flex-direction: row; flex-wrap: wrap; align-items: justify;">
+            {% for letra in alfabeto %}
+            <a class="btn" href="#{{letra.lower()}}" role="button"
+                style="--bs-btn-hover-bg: #ff8b3d;--bs-btn-bg: #F7D9C4; --bs-btn-color:black; --bs-btn-padding-y: .5rem; --bs-btn-padding-x: .85rem; --bs-btn-font-size: .90rem; font-family: Courier, monospace;">{{letra}}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="list-group mb-5">
+        {% for cat in categorias %}
+        {% if cat.lower() in primeiras_categorias %}
+        <a id="{{cat[0].lower()}}" href="/categorias/{{cat}}"
+            class="list-group-item list-group-item-action">{{cat}}</a>
+        {% else %}
+        <a href="/categorias/{{cat}}" class="list-group-item list-group-item-action">{{cat}}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <button id="back-to-top-btn"
+        style="display: none; position: fixed; bottom: 60px; right: 3px; padding: 10px 12px; border-radius: 10px;"
+        onclick="scrollToTop()"><i class="fas fa-arrow-up"></i>
+    </button>
+</div>
+
+<script>
+    window.addEventListener('scroll', function () {
+        var button = document.getElementById('back-to-top-btn');
+        if (window.scrollY > 150) { // Quantidade de scroll para ativar o botão 
+            button.style.display = 'block';
+        } else {
+            button.style.display = 'none';
+        }
+    });
+
+    // Função para fazer scroll até ao topo da página
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+{% endblock %}

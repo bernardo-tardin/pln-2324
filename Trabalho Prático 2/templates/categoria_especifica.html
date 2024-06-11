@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h2 style="font-family: Georgia, serif; text-align: center;">{{categoria}}</h2>
+<hr>
+
+<div class="grid gap-3">
+    <div class="p-1 g-col-2" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='images/pencil.png') }}" class="img-thumbnail" style="border: none;" width="5%" height="5%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <p style=" margin: 0; text-align: justify; font-family: Gill Sans, sans-serif; font-size: 1.05em;">
+                <b>Descrição:</b> {{definicao}}
+            </p>
+        </div>
+    </div>
+
+    {% if categoria == "Ossos" or categoria == "Músculos" %}
+        <a class="btn" href="/conceitos/ossos" role="button"
+            style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+            --bs-btn-bg: #C9E4DE; --bs-btn-color: black; --bs-btn-hover-bg: #44916F;">
+            Ir para termos
+        </a>
+    {% elif categoria == "Doenças" %}
+        <a class="btn" href="/conceitos/doencas" role="button"
+            style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+            --bs-btn-bg: #C9E4DE; --bs-btn-color: black; --bs-btn-hover-bg: #44916F;">
+            Ir para termos
+        </a>
+    {% else %}
+        <a class="btn" href="/conceitos/gloss/?c={{categoria}}" role="button"
+            style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+            --bs-btn-bg: #C9E4DE; --bs-btn-color: black; --bs-btn-hover-bg: #44916F;">
+            Ir para termos
+        </a>
+    {% endif %}
+
+
+</div>
+{% endblock %}

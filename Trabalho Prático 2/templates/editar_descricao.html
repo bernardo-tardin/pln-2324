@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h3> Editar descrição de <i>{{designacao}}</i></h3>
+<hr>
+<form method="post">
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição</label>
+      <input type="text" class="form-control shadow-sm" name="descricao" value="{{descricao}}">
+    </div>
+    <a href="#" class="btn btn-dark" onclick="history.back()">Voltar</a>
+    <button type="submit" class="btn btn-dark">Editar</button>
+  </form>
+{% endblock %}

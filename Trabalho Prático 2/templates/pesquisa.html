@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col" style="border-right: 1px solid #ddd;">Conceito</th>
+          <th scope="col" style="border-right: 1px solid #ddd;">Descrição</th>
+          <th scope="col" style="border-right: 1px solid #ddd;">Tradução</th>
+          <th scope="col">Documento</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ele in resultados %}
+        <tr>
+            <td style="border-right: 1px solid #ddd;">
+                <a href="{{ url_for('termo', designacao=ele[1]) }}" style=" color: inherit;">
+                    {{ ele[1]|highlight(termo)|safe }}
+                </a>
+            </td>
+            <td style="border-right: 1px solid #ddd;">{{ ele[0]["Definição"]|highlight(termo)|safe }}</td>
+            <td  style="border-right: 1px solid #ddd;">{{ ele[0]["Tradução"] }}</td>
+
+            <td>{{ ele[-1] }}</td>
+
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div style="margin-top: 1%; margin-bottom: 2%; position: relative;">
+    <a class="btn" href="#" role="button" onclick="history.back()"
+    style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+    --bs-btn-bg: #F7D9C4; --bs-btn-color: black; --bs-btn-hover-bg: #ff8b3d;">
+        Voltar a Conceitos</a>
+</div>
+
+{% endblock %}

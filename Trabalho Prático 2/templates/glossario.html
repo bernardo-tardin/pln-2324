@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div style="display: flex; flex-direction: column; align-items: justify;">
+
+    <div class="p-1 g-col-2" style="display: flex; align-items: center; margin-bottom: 1%;">
+        <button data-bs-toggle="modal" data-bs-target="#adicionarConceito" type="button" 
+        style=" right: 3px; padding: 10px 12px; border-radius: 10px;">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div style="padding-left: 10px;">
+            <h3 style="margin: 0; text-align: justify; ">
+                Adicionar Conceito </h3>
+        </div>
+    </div>
+
+    <div class="p-1 g-col-3" style="display: flex; align-items: center; margin-bottom: 1%;">
+        <img src="{{ url_for('static', filename='images/lupa.png') }}"  width="4%" height="4%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <h3 style="margin: 0; text-align: justify; ">
+                Filtrar por Categoria </h3>
+        </div>
+
+        <div class="dropdown" style="padding-left: 61%;">
+            <button class="btn dropdown-toggle" style="--bs-btn-bg: #ff8b3d; --bs-btn-color: black; --bs-btn-hover-bg: #3A9BDC;"
+             type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorias
+            </button>
+            <ul class="dropdown-menu"  style="background-color: #e3f2fd;">
+                <li><a class="dropdown-item" href="/conceitos/gloss/?c=todos">Todos</a></li>
+                {% for cat in categorias_glossario %}
+                <li><a class="dropdown-item" href="/conceitos/gloss/?c={{cat}}">{{cat}}</a></li>
+                {% endfor %}
+            </ul>
+          </div>
+
+    </div>
+
+    <div class="list-group mb-5">
+        {% for termo in glossario %}
+        <a href="/conceitos/{{termo}}" class="list-group-item list-group-item-action"> {{termo}}</a>
+        {% endfor %}
+
+    </div>
+
+    <hr>
+</div>
+
+<style>
+    .form-check-input:checked {
+        background-color: black;
+        border-color: black;
+    }
+</style>
+
+<div class="modal fade" id="adicionarConceito" tabindex="-1" aria-labelledby="adicionarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="adicionarLabel">Adicionar novo conceito</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form method="post">
+                
+                <p>Categorias</p>
+                <select name="categorias" id="cat">
+                {% for cat in categorias_glossario %}
+                <option value="{{cat}}">{{cat}}</option>
+                {% endfor %}
+                </select>
+                <hr>
+            
+                <div class="mb-3">
+                  <label for="designacao" class="form-label">Designação</label>
+                  <input type="text" class="form-control shadow-sm" name="designacao">
+                </div>
+                <div class="mb-3">
+                  <label for="descricao" class="form-label">Descrição</label>
+                  <input type="text" class="form-control shadow-sm" name="descricao">
+                </div>
+                <hr>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="traducaoSwitch" name="traducaoSwitch" onclick="toggleInputs()">
+                    <label class="form-check-label" for="traducao">Adicionar Tradução</label>
+                </div>
+               
+                <div class="mb-3">
+                    <label for="traducao" class="form-label">Tradução</label>
+                    <input class="form-control shadow-sm" type="text" placeholder="" aria-label="Tradução" name="traducao" id="traducaoInput" disabled>
+                </div>
+                <a href="/conceitos/gloss" class="btn"
+                style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+                --bs-btn-bg: #e3f2fd; --bs-btn-color: black; --bs-btn-hover-bg: #3A9BDC;">Voltar</a>
+        
+                <button type="submit" class="btn"
+                style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+                --bs-btn-bg: #e3f2fd; --bs-btn-color: black; --bs-btn-hover-bg: #3A9BDC;">Adicionar</button>
+        
+            </form>
+
+    </div>
+    </div>
+</div>
+
+
+<hr>
+
+
+  <script>
+    function toggleInputs() {
+        var checkbox = document.getElementById("traducaoSwitch");
+        var traducaoInput = document.getElementById("traducaoInput");
+
+        traducaoInput.disabled = !checkbox.checked;
+    }
+</script>
+</div>
+
+
+{% endblock %}

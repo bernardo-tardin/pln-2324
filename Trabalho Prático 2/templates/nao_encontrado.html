@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="grid gap-3">
+    <div class="p-1 g-col-2" style="display: flex; align-items: center; justify-content: center;">
+        <img src="{{ url_for('static', filename='images/danger.png') }}" width="20%" height="20%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <h1 class="modal-title fs-5" id="apagarLabel">Conceito <i>{{termo}}</i> não encontrado!</h1>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-end" style="margin-top: 80px;">
+   
+    <a class="btn" href="/" role="button"
+    style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+    --bs-btn-bg: #F7D9C4; --bs-btn-color: black; --bs-btn-hover-bg: #ff8b3d;">Voltar à página inicial</a>
+
+</div>
+
+
+
+{% endblock %}

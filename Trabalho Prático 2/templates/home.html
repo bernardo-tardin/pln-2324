@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="container-custom d-flex justify-content-around">
+        <div class="card" style="width: 30%;">
+            <div style="height: 8%;"></div>
+            <img src="{{ url_for('static', filename='images/sistema_muscu.jpg') }}" style="height: 38%; "
+                class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Sistema Musculoesquelético</h5>
+                <p class="card-text">Nesta secção podem ser encontrados conceitos relacionados com o sistema esquelético
+                    e muscular, permitindo aprimorar o conhecimento da anatomia humana.
+                </p>
+                <a href="/conceitos/ossos" class="btn" role="button"
+                    style="--bs-btn-hover-bg: #ff8b3d;--bs-btn-bg: #F7D9C4; --bs-btn-color:black; --bs-btn-padding-y: .5rem; --bs-btn-padding-x: .85rem;">Go</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 30%;">
+            <img src="{{ url_for('static', filename='images/dic_cardio.jpg') }}" style="height: 48%;"
+                class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Doenças de A-Z</h5>
+                <p class="card-text">Aqui podem ser encontradas, por ordem alfabética, diversas doenças com as suas
+                    respetivas definições para análise.
+                </p>
+                <a href="/conceitos/doencas" class="btn" role="button"
+                    style="--bs-btn-hover-bg: #ff8b3d;--bs-btn-bg: #F7D9C4; --bs-btn-color:black; --bs-btn-padding-y: .5rem; --bs-btn-padding-x: .85rem;">Go</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 30%;">
+            <img src="{{ url_for('static', filename='images/glossario.jpg') }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Glossário Global</h5>
+                <p class="card-text">Glossário composto por um vocabulário de alta qualidade referente
+                    às mais diversas terminologias médicas. Estas encontram-se organizadas por categorias.
+                </p>
+                <a href="/conceitos/gloss" class="btn" role="button"
+                    style="--bs-btn-hover-bg: #ff8b3d;--bs-btn-bg: #F7D9C4; --bs-btn-color:black; --bs-btn-padding-y: .5rem; --bs-btn-padding-x: .85rem;">Go</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

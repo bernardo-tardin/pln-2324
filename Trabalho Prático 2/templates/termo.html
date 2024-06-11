@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h2 style="font-family: Georgia, serif; text-align: center;">{{termo}}</h2>
+<hr>
+
+<div class="grid gap-3">
+    <div class="p-1 g-col-2" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='images/tag.png') }}" class="img-thumbnail" style="border: none;" width="5%" height="5%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <p style="margin: 0; text-align: justify; font-family: Gill Sans, sans-serif; font-size: 1.05em;">
+                <b>Categoria:</b> 
+                {%for i in range(categoria|length) %}
+                {% if i == categoria|length-1 %}
+                {{categoria[i]}} 
+                {% else %}
+                {{categoria[i]}} &
+                {% endif %} 
+                {% endfor %}
+            </p>
+                
+        </div>
+    </div>
+    <div class="p-1 g-col-2" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='images/pencil.png') }}" class="img-thumbnail" style="border: none;" width="5%" height="5%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <p style=" margin: 0; text-align: justify; font-family: Gill Sans, sans-serif; font-size: 1.05em;">
+                {% if descricao.startswith("Ver") %}
+                <b>Descrição:</b> Ver <a href="/conceitos/{{descricao[4:-2]}}">{{descricao[4:-2]}}</a>
+                {% else %}
+                <b>Descrição:</b>{{descricao}}
+                {% endif %}
+            </p>
+            <a href="/editar_descricao/{{termo}}" style="color:black;">Editar Descrição</a>
+        </div>
+    </div>
+    <div class="p-1 g-col-2" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='images/en.png') }}" class="img-thumbnail" style="border: none;" width="5%" height="5%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <p style="margin: 0; text-align: justify; font-family: Gill Sans, sans-serif; font-size: 1.05em;">
+                <b>Tradução:</b> {{traducao}}</p>
+
+            <a href="/adicionar_traducao/{{termo}}" style="color:black;">Adicionar Tradução</a>
+        </div>
+    </div>
+</div>
+
+<div class="btn-group float-end">
+    <button
+        style="--bs-btn-bg: #e3f2fd; --bs-btn-color: black; --bs-btn-hover-bg: #3A9BDC; --bs-btn-hover-color: black;"
+        type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Pretendes obter outras traduções?
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="https://translate.google.com/?sl=auto&tl=es&text={{termo}}"
+                target="_blank">Espanhol</a></li>
+        <li><a class="dropdown-item" href="https://translate.google.com/?sl=auto&tl=fr&text={{termo}}"
+                target="_blank">Francês</a></li>
+        <li><a class="dropdown-item" href="https://translate.google.com/?sl=auto&tl=it&text={{termo}}"
+                target="_blank">Italiano</a></li>
+        <li><a class="dropdown-item" href="https://translate.google.com/?sl=auto&tl=de&text={{termo}}"
+                target="_blank">Alemão</a></li>
+    </ul>
+</div>
+
+<div style="margin-top: 10%; position: relative;">
+    <a class="btn" href="#" role="button"  onclick="history.back()"
+        style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+        --bs-btn-bg: #C9E4DE; --bs-btn-color: black; --bs-btn-hover-bg: #44916F;">
+        Voltar a Conceitos</a>
+</div>
+
+<button data-bs-toggle="modal" data-bs-target="#apagarConceito"
+ style="--bs-btn-bg: #F7D9C4; --bs-btn-color: black; --bs-btn-hover-bg: #ff8b3d; --bs-btn-hover-color: black; margin-top: 1%;" class="btn">Apagar</button>
+
+<div class="modal fade" id="apagarConceito" tabindex="-1" aria-labelledby="apagarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="apagarLabel">Apagar <i>{{termo}}</i></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p> Deseja apagar o conceito <i>{{termo}}</i>? </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" style="--bs-btn-bg: #C9E4DE; --bs-btn-color: black; --bs-btn-hover-bg: #44916F;" data-bs-dismiss="modal">Voltar</button>
+          <form method="POST" action="{{ url_for('apagarConceito', designacao=termo) }}">
+            <button type="submit" class="btn"  style="--bs-btn-bg: #E8A2A2; --bs-btn-color: black; --bs-btn-hover-bg: #d1001f;">Apagar Conceito</button>
+        </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+{% endblock %}

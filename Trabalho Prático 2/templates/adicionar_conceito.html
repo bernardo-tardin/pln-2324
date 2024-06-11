@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<style>
+    .form-check-input:checked {
+        background-color: black;
+        border-color: black;
+    }
+</style>
+
+<h3> Adicionar conceito</h3>
+<hr>
+<form method="post">
+    <div class="mb-3">
+      <label for="designacao" class="form-label">Designação</label>
+      <input type="text" class="form-control shadow-sm" name="designacao">
+    </div>
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição</label>
+      <input type="text" class="form-control shadow-sm" name="descricao">
+    </div>
+    <hr>
+    <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" role="switch" id="traducaoSwitch" name="traducaoSwitch" onclick="toggleInputs()">
+        <label class="form-check-label" for="traducao">Adicionar Tradução</label>
+    </div>
+    <div class="mb-3">
+        <label for="idioma" class="form-label">Idioma</label>
+        <input class="form-control shadow-sm" type="text" placeholder="" aria-label="Idioma" name="idioma" id="idiomaInput" disabled>
+    </div>
+    <div class="mb-3">
+        <label for="traducao" class="form-label">Tradução</label>
+        <input class="form-control shadow-sm" type="text" placeholder="" aria-label="Tradução" name="traducao" id="traducaoInput" disabled>
+    </div>
+    <a href="/conceitos" class="btn btn-dark mt-3">Voltar</a>
+    <button type="submit" class="btn btn-dark mt-3">Adicionar</button>
+  </form>
+
+  <script>
+    function toggleInputs() {
+        var checkbox = document.getElementById("traducaoSwitch");
+        var idiomaInput = document.getElementById("idiomaInput");
+        var traducaoInput = document.getElementById("traducaoInput");
+
+        idiomaInput.disabled = !checkbox.checked;
+        traducaoInput.disabled = !checkbox.checked;
+    }
+</script>
+{% endblock %}

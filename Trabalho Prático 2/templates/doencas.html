@@ -1,0 +1,149 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div style="display: flex; flex-direction: column; align-items: justify;">
+
+    <div class="p-1 g-col-2" style="display: flex; align-items: center; margin-bottom: 1%;">
+        <button data-bs-toggle="modal" data-bs-target="#adicionarConceito" type="button" 
+        style=" right: 3px; padding: 10px 12px; border-radius: 10px;">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div style="padding-left: 10px;">
+            <h3 style="margin: 0; text-align: justify; ">
+                Adicionar Conceito </h3>
+        </div>
+    </div>
+
+    <div class="p-1 g-col-2" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='images/abc.png') }}"  width="6%" height="6%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <h3 style="margin: 0; text-align: justify; ">
+                Filtrar por Alfabeto </h3>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: row; align-items: justify;">
+        <div class=" gap-2 d-flex mb-2" style="flex-direction: row; flex-wrap: wrap; align-items: justify;">
+            {% for letra in alfabeto %}
+            <a class="btn" href="#{{letra.lower()}}" role="button"
+                style="--bs-btn-hover-bg: #ff8b3d;--bs-btn-bg: #F7D9C4; --bs-btn-color:black; --bs-btn-padding-y: .5rem; --bs-btn-padding-x: .85rem; --bs-btn-font-size: .90rem; font-family: Courier, monospace;">{{letra}}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="p-1 g-col-2" style="display: flex; align-items: center; margin-bottom: 2%">
+        <img src="{{ url_for('static', filename='images/dic.png') }}"  width="5%" height="5%"
+            style="margin-right: 10px;">
+        <div style="padding-left: 10px;">
+            <h3 style="margin: 0; text-align: justify; ">
+                Conceitos </h3>
+        </div>
+    </div>
+
+    <div class="list-group mb-5">
+        {% for doenca in doencas %}
+        {% if doenca.lower() in primeiros_termos %}
+        <a id="{{doenca[0].lower()}}" href="/conceitos/{{doenca}}"
+            class="list-group-item list-group-item-action">{{doenca}}</a>
+        {% else %}
+        <a href="/conceitos/{{doenca}}" class="list-group-item list-group-item-action">{{doenca}}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <button id="back-to-top-btn"
+        style="display: none; position: fixed; bottom: 60px; right: 3px; padding: 10px 12px; border-radius: 10px;"
+        onclick="scrollToTop()"><i class="fas fa-arrow-up"></i>
+    </button>
+    
+</div>
+
+<style>
+    .form-check-input:checked {
+        background-color: black;
+        border-color: black;
+    }
+</style>
+
+<div class="modal fade" id="adicionarConceito" tabindex="-1" aria-labelledby="adicionarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="adicionarLabel">Adicionar novo conceito</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form method="post">
+            
+                <div class="mb-3">
+                  <label for="designacao" class="form-label">Designação</label>
+                  <input type="text" class="form-control shadow-sm" name="designacao">
+                </div>
+                <div class="mb-3">
+                  <label for="descricao" class="form-label">Descrição</label>
+                  <input type="text" class="form-control shadow-sm" name="descricao">
+                </div>
+
+                <div class="mb-3">
+                    <label for="categoria" class="form-label">Categoria</label>
+                    <input type="text" class="form-control shadow-sm" name="categoria" value="Doenças" readonly>
+                </div>
+
+                <hr>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="traducaoSwitch" name="traducaoSwitch" onclick="toggleInputs()">
+                    <label class="form-check-label" for="traducao">Adicionar Tradução</label>
+                </div>
+               
+                <div class="mb-3">
+                    <label for="traducao" class="form-label">Tradução</label>
+                    <input class="form-control shadow-sm" type="text" placeholder="" aria-label="Tradução" name="traducao" id="traducaoInput" disabled>
+                </div>
+                <a href="/conceitos/doencas" class="btn"
+                style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+                --bs-btn-bg: #e3f2fd; --bs-btn-color: black; --bs-btn-hover-bg: #3A9BDC;">Voltar</a>
+        
+                <button type="submit" class="btn"
+                style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem;
+                --bs-btn-bg: #e3f2fd; --bs-btn-color: black; --bs-btn-hover-bg: #3A9BDC;">Adicionar</button>
+        
+            </form>
+
+    </div>
+    </div>
+</div>
+<hr>
+
+
+    <script>
+    function toggleInputs() {
+        var checkbox = document.getElementById("traducaoSwitch");
+        var traducaoInput = document.getElementById("traducaoInput");
+
+        traducaoInput.disabled = !checkbox.checked;
+    }
+    </script>
+</div>
+
+
+<script>
+    window.addEventListener('scroll', function () {
+        var button = document.getElementById('back-to-top-btn');
+        if (window.scrollY > 150) { // Quantidade de scroll para ativar o botão 
+            button.style.display = 'block';
+        } else {
+            button.style.display = 'none';
+        }
+    });
+
+    // Função para fazer scroll até ao topo da página
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+{% endblock %}
