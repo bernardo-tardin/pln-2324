@@ -1,4 +1,6 @@
-## Trabalho de Casa 7
+## TPC7
+
+### 🇵🇹
 
 Este trabalho consiste no aprimoramento do website desenvolvido no TPC6 com a inserção de permissão de adicionar e apagar novos conceitos, visualização dos conceitos numa tabela e adição de uma página de busca.
 
@@ -16,4 +18,25 @@ Para a tabela de dados, foi necessário recorrer à utilização da linguagem Ja
 Abaixo está um vídeo que demonstra a utilização da página web desenvolvida:
 
 https://github.com/bernardo-tardin/pln-2324/assets/147925451/6e22330f-8f54-4a60-8815-b46c39d6f5a9
+
+### 🇬🇧
+
+This project consists of improving the website developed in TPC6 by adding permissions to insert and delete concepts, displaying the concepts in a table format, and implementing a search page.
+
+Since the web application developed in TPC6 already allowed adding and deleting concepts, editing descriptions, and adding new translations, the structure of the dicionarioMedico.py file was maintained. That is, the POST method was used, along with the request.form function, to implement these features. However, to ensure data consistency in the database — in this case, a JSON file — the following code snippet is called whenever a change is made:
+
+`with open("/Users/bernardomoraes/Documents/GitHub/pln2324/TPC5/conceitos_trad.json", "w", encoding="utf-8") as file:
+        json.dump(conceitos, file, ensure_ascii=False, indent=4)`
+
+To build the search page, the pesquisa() function was created. Similar to the implementation in TPC6, it uses request.form.get to retrieve the text entered in the input field named "search". If the search term is found in the concepts or descriptions, a dictionary named resultados is returned, where the keys are the concepts and the values are the descriptions, allowing the concept list visible to the user to be updated. Otherwise, a default error page is displayed indicating that the searched concept was not found.
+
+For the error page, a pre-designed layout was used, specified in the error.html template through <link> tags with the rel="stylesheet" attribute.
+
+To display the data in table format, JavaScript was used via the jQuery library. A directory named "static" was created containing the file script1.js, which calls the DataTable() function from the library. The template table.html was implemented, where a for loop adds new rows to the table based on the data stored in the conceitos dictionary. Since the JSON file structure allows for concepts without corresponding translations, a conditional if statement was added to display the text "No Translation" when applicable.
+
+Below is a video demonstrating the use of the developed web page:
+
+https://github.com/bernardo-tardin/pln-2324/assets/147925451/6e22330f-8f54-4a60-8815-b46c39d6f5a9
+
+
 
